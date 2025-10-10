@@ -1,0 +1,95 @@
+============================================================
+GUIA RAPIDO - DETECTOR DE FADIGA
+============================================================
+
+INSTALAÇÃO (apenas na primeira vez):
+------------------------------------------------------------
+  # Opção 1: Script automático
+  ./install_dependencies.sh
+  
+  # Opção 2: Manual
+  source .v/bin/activate
+  pip install -r requirements.txt
+
+TEMPOS DE DETECÇÃO (baseado nas configurações atuais):
+------------------------------------------------------------
+  - BOCEJO: 0.50 segundos (15 frames a 30 FPS)
+    → Mantenha a boca aberta por MEIO SEGUNDO
+  
+  - OLHOS FECHADOS: 0.67 segundos (20 frames a 30 FPS)
+    → Mantenha os olhos fechados por DOIS TERÇOS DE SEGUNDO
+
+COMO TESTAR O SISTEMA:
+------------------------------------------------------------
+
+1. CALIBRAÇÃO INICIAL (1 segundo)
+   - Ao iniciar o programa, mantenha expressão neutra
+   - Não boceje durante a calibração
+   - O sistema aprenderá seu MAR normal
+
+2. TESTE DE BOCEJO
+   - Abra bem a boca (como se estivesse bocejando)
+   - Mantenha por pelo menos 0.5 segundos
+   - O sistema deve alertar "Bocejando"
+
+3. TESTE DE OLHOS FECHADOS
+   - Feche os olhos completamente
+   - Mantenha por pelo menos 0.67 segundos
+   - O sistema deve alertar "Olhos fechados"
+
+CONTROLES DO TECLADO:
+------------------------------------------------------------
+  'q' - Sair do programa
+  'r' - Resetar contadores e recalibrar
+  's' - Ligar/desligar alerta sonoro
+  'l' - Ligar/desligar visualização dos landmarks
+
+AJUSTANDO A SENSIBILIDADE:
+------------------------------------------------------------
+Edite o arquivo detector.py, linhas 28-31:
+
+  EAR_THRESHOLD = 0.25      # Menor = mais sensível para olhos
+  EAR_CONSEC_FRAMES = 20    # Menos frames = detecta mais rápido
+  
+  MAR_THRESHOLD = 0.75      # Menor = mais sensível para bocejo
+  MAR_CONSEC_FRAMES = 15    # Menos frames = detecta mais rápido
+
+EXEMPLO DE VALORES:
+  - Mais sensível:  MAR_THRESHOLD = 0.60, MAR_CONSEC_FRAMES = 10
+  - Menos sensível: MAR_THRESHOLD = 0.90, MAR_CONSEC_FRAMES = 25
+
+VISUALIZAÇÃO:
+------------------------------------------------------------
+  - VERDE = Normal
+  - VERMELHO = Detectando fadiga
+  - Banner vermelho inferior = ALERTA ATIVO
+
+LOGS DO CONSOLE:
+------------------------------------------------------------
+  [OK] = Operação bem-sucedida
+  [ERRO] = Erro no sistema
+  [!!! ALERTA !!!] = Fadiga detectada
+
+EXECUTAR O PROGRAMA:
+------------------------------------------------------------
+  # Opção 1: Script automático (recomendado)
+  ./run_detector.sh
+  
+  # Opção 2: Manual
+  source .v/bin/activate
+  python3 detector.py
+
+TESTAR LANDMARKS:
+------------------------------------------------------------
+  # Opção 1: Script automático (recomendado)
+  ./run_test_landmarks.sh
+  
+  # Opção 2: Manual
+  source .v/bin/activate
+  python3 test_landmarks.py
+  
+  Pressione 'a' para ver todos os 468 pontos do face mesh
+  Pressione 'n' para ligar/desligar números dos pontos
+
+============================================================
+
