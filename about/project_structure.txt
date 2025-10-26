@@ -1,0 +1,46 @@
+.
+├── backend
+│   ├── app
+│   │   ├── api
+│   │   ├── crud.py
+│   │   ├── database.py
+│   │   ├── main.py
+│   │   ├── models.py
+│   │   ├── report_generator.py
+│   │   └── schemas.py
+│   ├── requirements.txt
+│   └── run.sh
+├── detector.py
+├── frontend
+│   ├── index.html
+│   ├── package.json
+│   ├── run.sh
+│   ├── src
+│   │   ├── App.vue
+│   │   ├── components
+│   │   ├── main.js
+│   │   ├── plugins
+│   │   ├── router
+│   │   ├── services
+│   │   └── views
+│   └── vite.config.js
+├── GUIA_RAPIDO.txt
+├── install_dependencies.sh
+├── install.sh
+├── project_structure.txt
+├── README_DEPLOY.md
+├── README_MAIN.md
+├── README.md
+├── README_SISTEMA.md
+├── requirements.txt
+├── run_detector.sh
+├── run_test_landmarks.sh
+├── start_all.sh
+├── systemd
+│   ├── fatigue-backend.service
+│   ├── fatigue-detector.service
+│   └── README_SYSTEMD.md
+├── test_landmarks.py
+└── uploads
+
+13 directories, 31 files

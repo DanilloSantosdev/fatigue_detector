@@ -1,0 +1,31 @@
+[Unit]
+Description=Fatigue Detection System
+Documentation=https://github.com/seu-usuario/fatigue_detector
+After=network.target fatigue-backend.service
+Wants=fatigue-backend.service
+
+[Service]
+Type=simple
+User=tecnoly
+Group=tecnoly
+WorkingDirectory=/home/tecnoly/Documents/testCam/fatigue_detector
+Environment="PATH=/home/tecnoly/Documents/testCam/fatigue_detector/.v/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+Environment="API_BASE_URL=http://localhost:8000"
+Environment="VEHICLE_ID=SUBSTITUA_PELO_UUID_DO_VEICULO"
+ExecStart=/home/tecnoly/Documents/testCam/fatigue_detector/.v/bin/python detector.py
+
+# Restart policy
+Restart=always
+RestartSec=10
+
+# Security
+NoNewPrivileges=true
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=fatigue-detector
+
+[Install]
+WantedBy=multi-user.target
+

@@ -14,9 +14,9 @@ if [ ! -f "requirements.txt" ]; then
 fi
 
 # Verificar se o ambiente virtual existe
-if [ ! -d ".v" ]; then
+if [ ! -d ".venv" ]; then
     echo "[INFO] Criando ambiente virtual..."
-    python3 -m venv .v
+    python3 -m venv .venv
     if [ $? -ne 0 ]; then
         echo "[ERRO] Falha ao criar ambiente virtual!"
         exit 1
@@ -27,7 +27,7 @@ fi
 
 # Ativar ambiente virtual
 echo "[INFO] Ativando ambiente virtual..."
-source .v/bin/activate
+source .venv/bin/activate
 
 # Atualizar pip
 echo ""

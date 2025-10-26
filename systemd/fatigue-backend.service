@@ -1,0 +1,30 @@
+[Unit]
+Description=Fatigue Detection Backend API
+Documentation=https://github.com/seu-usuario/fatigue_detector
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=tecnoly
+Group=tecnoly
+WorkingDirectory=/home/tecnoly/Documents/testCam/fatigue_detector/backend
+Environment="PATH=/home/tecnoly/Documents/testCam/fatigue_detector/backend/venv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart=/home/tecnoly/Documents/testCam/fatigue_detector/backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+
+# Restart policy
+Restart=always
+RestartSec=10
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=fatigue-backend
+
+[Install]
+WantedBy=multi-user.target
+
